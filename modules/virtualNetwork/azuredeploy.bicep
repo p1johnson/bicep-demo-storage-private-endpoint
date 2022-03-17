@@ -8,6 +8,7 @@ param serverSubnetName string
 param serverSubnetAddress string
 param bastionSubnetAddress string
 
+output virtualNetworkId string = resourceId('Microsoft.Network/virtualNetworks', virtualNetworkName)
 output serverSubnetId string = resourceId('Microsoft.Network/virtualNetworks/subnets', virtualNetworkName, serverSubnetName)
 output bastionSubnetId string = resourceId('Microsoft.Network/virtualNetworks/subnets', virtualNetworkName, 'AzureBastionSubnet')
 
@@ -26,6 +27,7 @@ resource virtualNetwork 'Microsoft.Network/virtualNetworks@2021-05-01' = {
         name: serverSubnetName
         properties: {
           addressPrefix: serverSubnetAddress
+          privateEndpointNetworkPolicies: 'Disabled'
         }
       }
       {

@@ -1,1 +1,1 @@
-# bicep-demo-template
+# Storage Account with Private Endpoint
